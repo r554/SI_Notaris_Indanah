@@ -30,7 +30,7 @@ class Admin extends CI_Controller
 
         if (empty($user)) { // Jika hasilnya kosong / user tidak ditemukan
             $this->session->set_flashdata('message', 'Username Atau Password Salah'); // Buat session flashdata
-            redirect('Auth_Admin'); // Redirect ke halaman login
+            redirect('Admin'); // Redirect ke halaman login
         } else {
             if ($password == $user->password_admin) { // Jika password yang diinput sama dengan password yang didatabase
                 $session = array(
@@ -43,15 +43,13 @@ class Admin extends CI_Controller
                 );
 
                 $this->session->set_userdata($session); // Buat session sesuai $session
-                if ($user->role == 1) {
-                    redirect(site_url('Manager/Dashboard_Manager/tampil_manager'));
-                } else {
-                    redirect(site_url('Dashboard/tampil'));
-                }
+
+                redirect(site_url('Data_master'));
+
                 //redirect('page/home'); // Redirect ke halaman home
             } else {
                 $this->session->set_flashdata('message', 'Username atau Password Salah'); // Buat session flashdata
-                redirect('Auth_Admin'); // Redirect ke halaman login
+                redirect('Admin'); // Redirect ke halaman login
             }
         }
     }
@@ -60,7 +58,7 @@ class Admin extends CI_Controller
     {
         $this->session->sess_destroy(); // Hapus semua session
         //redirect('welcome'); // Redirect ke halaman login
-        redirect(site_url('Auth_Admin'));
+        redirect(site_url('Admin'));
     }
 
     public function daftar()

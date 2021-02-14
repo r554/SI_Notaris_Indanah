@@ -40,19 +40,32 @@
                                 <p class="text-muted w-75 mx-auto mb-4 mt-4">Login Untuk Mengakses Halaman Panel Notaris Indanah</p>
                             </div>
 
-                            <form class="form-horizontal mt-4" action="index.html">
+                            <?php
+                            // Cek apakah terdapat session nama message
+                            if ($this->session->flashdata('message')) { // Jika ada
+                            ?>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <strong>Gagal Login!</strong> Username Atau Password Salah
+                                </div>
+                            <?php }
+                            ?>
+
+                            <form class="form-horizontal mt-4" action="<?= base_url('Admin/login') ?>" method="POST">
 
                                 <div class="form-group">
                                     <div class="col-12">
                                         <label for="username">Username</label>
-                                        <input class="form-control" type="text" required="" id="username" placeholder="Username">
+                                        <input class="form-control" type="text" name="username" required id="username" placeholder="Username">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-12">
                                         <label for="password">Password</label>
-                                        <input class="form-control" type="password" required="" id="password" placeholder="Password">
+                                        <input class="form-control" type="password" name="password" required id="password" placeholder="Password">
                                     </div>
                                 </div>
 
